@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Travel Dashboard</title>
+  </head>
+  <body>
+  <h1>Hello, {{user.uname}}!</h1>
+    <h5>Your Trip Schedules</h5>
+  <table border>
+
+    <tr>
+      <th><h4>Destination </h4></th>
+      <th><h4>Travel Start Date</h4></th>
+      <th><h4>Travel End Date </h4></th>
+      <th><h4>Plan </h4></th>
+    </tr>
+    <tbody>
+
+      {%for trip in curr_user_trips%}
+      <tr>
+        <td><a href="/destination/{{trip.trip.id}}">{{trip.trip.destination}}</a></td>
+        <td>{{trip.trip.datefrom}}</td>
+        <td>{{trip.trip.dateto}}</td>
+          <td>{{trip.trip.description}}</td>
+          <td><a href="/delete/{{trip.trip.id}}">Delete?</a>
+        </td>
+      </tr>
+      {%endfor%}
+      {%comment%}
+
+
+      {%endcomment%}
+    </tbody>
+  </table>
+
+    <h5>Other Users Travel Plans</h5>
+    <table border>
+
+      <tr>
+        <th><h4>Name</h4></th>
+         <th><h4>Destination</h4></th>
+        <th><h4>Travel Start Date</h4></th>
+        <th><h4>Travel End Date </h4></th>
+        <th><h4>Do You want to Join?</h4></th>
+      </tr>
+      <tbody>
+
+      {%for trip in alltrips%}
+        <tr>
+          <td>{{trip.user.name}}</td>
+          <td><a href="/destination/{{trip.id}}">{{trip.destination}}</a></td>
+          <td>{{trip.datefrom}}</td>
+          <td>{{trip.dateto}}</td>
+          <td><a href="/join/{{trip.id}}">Join</a></td>
+        </tr>
+      {%endfor%}
+
+      </tbody>
+    </table>
+    <p><a href="/logout">Logout</a></p>
+    <p><a href="/add">Add Travel Plan</a></p>
+  </body>
+</html>
